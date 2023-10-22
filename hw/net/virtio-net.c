@@ -453,6 +453,9 @@ static void virtio_net_set_link_status(NetClientState *nc)
     if (n->net_conf.link_up)
         n->status |= VIRTIO_NET_S_LINK_UP;
 
+    /* XXX  hack to avoid setting "link_up" at runtime */
+    n->status |= VIRTIO_NET_S_LINK_UP;
+
     if (n->status != old_status)
         virtio_notify_config(vdev);
 
